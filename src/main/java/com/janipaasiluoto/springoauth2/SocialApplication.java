@@ -35,6 +35,7 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
                         .antMatchers("/", "/error", "/webjars/**").permitAll()
                         .anyRequest().authenticated()
                 )
+                .logout(l -> l.logoutSuccessUrl("/").permitAll())
                 .exceptionHandling(e -> e
                         .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 )
