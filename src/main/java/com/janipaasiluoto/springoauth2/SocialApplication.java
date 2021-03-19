@@ -24,6 +24,14 @@ public class SocialApplication extends WebSecurityConfigurerAdapter {
         return Collections.singletonMap("name", principal.getAttribute("name"));
     }
 
+    @GetMapping("/error")
+    @ResponseBody
+    public String error(HttpServletRequest request) {
+        String message = (String) request.getSession().getAttribute("error.message");
+        request.getSession().removeAttribute("error.message");
+        return message;
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(SocialApplication.class, args);
     }
